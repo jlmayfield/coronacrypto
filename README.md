@@ -1,0 +1,1 @@
+This code is used to maintain my [Coronacrypto](https://jlmayfield.github.io/blog/2020/03/Coronacrypto) series. If you're participating in that series, than reading this code is likely to reveal some operational details that will give you clues about the puzzles. So reader be warned. 
