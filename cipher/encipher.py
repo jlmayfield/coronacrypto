@@ -8,7 +8,7 @@ Created on Sun Mar 22 16:24:11 2020
 
 import string
 
-def encipher(plaintext,alphabet,pad='Z',l_group=5,r_group=5):
+def encipher(plaintext,alphabet,pad='Z',l_group=5,r_group=10):
     """
     Encipher the given plaintext using the given alphabet. Pad characters
     and grouping values can also be provided. 

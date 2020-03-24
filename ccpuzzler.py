@@ -25,12 +25,17 @@ def buildparser():
     parser : argparser        
 
     """
-    parser = argparse.ArgumentParser(description='Encipher something fun')
-    parser.add_argument('fname',nargs=1)
-    parser.add_argument('vnum',nargs=1)
-    parser.add_argument('-s',type=int,default=0)
-    parser.add_argument('-k',type=str,default='')
-    parser.add_argument('-r')
+    parser = argparse.ArgumentParser(description='Build a CoronaCrypto Puzzle.')
+    parser.add_argument('fname',nargs=1,
+                        help='Name of file containing plaintext source')
+    parser.add_argument('vnum',nargs=1,
+                        help='Puzzle Series (S) Number (N) designator as "S.N"')
+    parser.add_argument('-s',type=int,default=0,
+                        help='Shift amount for the cipher sequence')
+    parser.add_argument('-k',type=str,default='',
+                        help='Keyword or keyphrase for the cipher sequence')
+    parser.add_argument('-r',
+                        help='Include if the cipher sequence should be reversed.')
     return parser   
 
 def logkeygen(log,args):
@@ -81,9 +86,9 @@ def logpuzzle(args,plain,cipher,key):
     timestamp = now.strftime("%Y%m%d")
     # open log file
     try:
+        srcpath , _ = os.path.split(os.path.abspath(args['fname'][0]))
         filename = 'cc-'+args['vnum'][0]+'-'+timestamp+'.txt'
-        fullpath = os.path.abspath('series/series1/' + filename)
-        log = open(fullpath,'w')
+        log = open(srcpath+'/'+filename,'w')
     except OSError:
         sys.exit('Cannot open log for writting buddy.')
         # log header info    
