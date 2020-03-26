@@ -89,9 +89,11 @@ def logpuzzle(args,plain,cipher,key):
         srcpath , _ = os.path.split(os.path.abspath(args['fname'][0]))
         filename = 'cc-'+args['vnum'][0]+'-'+timestamp+'.txt'
         log = open(srcpath+'/'+filename,'w')
+        # file for saving ciphertext only
+        ctext = open(srcpath+'/'+'c'+args['vnum'][0]+'.txt','w')
     except OSError:
         sys.exit('Cannot open log for writting buddy.')
-        # log header info    
+    # log header info    
     log.write('Coronacrypto Puzzle\n------------------\n')
     log.write('Series-Puzzle Number: ' + args['vnum'][0] + '\n')
     log.write('Created: ' + now.strftime("%Y-%m-%d %H:%M:%S"))
@@ -109,6 +111,7 @@ def logpuzzle(args,plain,cipher,key):
     log.write('Ciphertext\n----------\n')
     log.write('\n')
     log.write(cipher)
+    ctext.write(cipher)
     
 
 if __name__ == '__main__':
