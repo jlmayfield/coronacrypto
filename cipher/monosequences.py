@@ -26,7 +26,6 @@ def issequence(candidate):
 
     """
     return set(list(string.ascii_uppercase)) == set(list(candidate.upper()))
-    
 
 def rand():
     """
@@ -42,7 +41,7 @@ def rand():
     return ''.join(seq)
 
 
-def shift(steps=0,seq=string.ascii_uppercase):
+def shift(steps=0, seq=string.ascii_uppercase):
     """
     Shift a sequence steps places. Postive values move 'A' right where negative
     move it left. By default this does a ceasar shift, i.e. it works on the
@@ -61,25 +60,21 @@ def shift(steps=0,seq=string.ascii_uppercase):
 
     """
     if steps > 0:
-        return seq[-steps:] + seq[0:len(seq)-steps]
-    elif steps < 0:
-        return seq[-steps:] + seq[0:-steps]
-    else: 
-        return seq
+        seq = seq[-steps:] + seq[0:len(seq)-steps]
+    else:
+        seq = seq[-steps:] + seq[0:-steps]
+    return seq
 
 def keyword(key):
     """
-    Compute a keyword/keyphrase based ciphertext sequence. 
-
+    Compute a keyword/keyphrase based ciphertext sequence.
     Parameters
     ----------
     key : string
-        the desired keyword or keyphrase 
-
+        the desired keyword or keyphrase
     Returns
     -------
-    Keyword-based sequence 
-
+    Keyword-based sequence
     """
     key_lst = [l for w in [list(w) for w in key.upper().split()] for l in w]
     key_set = set(key_lst)
@@ -87,25 +82,18 @@ def keyword(key):
     key_nodupe = []
     for k in key_lst:
         if k not in key_nodupe:
-            key_nodupe.append(k)    
+            key_nodupe.append(k)
     return ''.join(key_nodupe + diff)
 
-        
 def reverse(seq=string.ascii_uppercase):
     """
     Reverse a given sequence
-
     Parameters
     ----------
     seq : string
         sequence to be reversed
-
     Returns
     -------
     reverse of seq
-
     """
     return seq[len(seq)::-1]
-
-
-
