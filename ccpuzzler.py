@@ -78,7 +78,7 @@ def logpuzzle(cli_args, plain, cipher, key):
     timestamp = now.strftime("%Y%m%d")
     # open log file
     try:
-        srcpath = os.path.split(os.path.abspath(cli_args['fname'][0]))
+        srcpath , _ = os.path.split(os.path.abspath(cli_args['fname'][0]))
         filename = 'cc-' + cli_args['vnum'][0] + '-' + timestamp + '.txt'
         log = open(srcpath+'/'+filename, 'w')
         # file for saving ciphertext only
