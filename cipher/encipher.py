@@ -8,7 +8,7 @@ Created on Sun Mar 22 16:24:11 2020
 
 import string
 
-def encipher(plaintext, alphabet, pad='Z', l_group=5, r_group=10):
+def encipher(plaintext, alphabet, pad, l_group, r_group):
     """
     Encipher the given plaintext using the given alphabet. Pad characters
     and grouping values can also be provided.
@@ -19,11 +19,11 @@ def encipher(plaintext, alphabet, pad='Z', l_group=5, r_group=10):
     alphabet : MonoAlphabet
         key
     pad : str, optional
-        letter used for padding. The default is 'Z'.
-    l_group : int, optional
-        size of letter group. The default is 5.
-    r_group : int, optional
-        size of row groups. The default is 5.
+        letter used for padding.
+    l_group : int
+        size of letter group
+    r_group : int,
+        size of row groups
     Returns
     -------
     string
