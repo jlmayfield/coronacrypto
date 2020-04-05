@@ -34,6 +34,12 @@ def buildparser():
                             help='Keyword or keyphrase for the cipher sequence')
     cli_parser.add_argument('-r',
                             help='Include if the cipher sequence should be reversed.')
+    cli_parser.add_argument('--blocksize', type=int, default=5,
+                            help='Size of ciphertext block')
+    cli_parser.add_argument('--rowsize', type=int, default=8,
+                            help='Blocks per row in the ciphertext')
+    cli_parser.add_argument('-p', type=str, default='Z',
+                            help='Character used to pad ciphertext')
     return cli_parser
 
 def logkeygen(log, cli_args):
@@ -78,7 +84,7 @@ def logpuzzle(cli_args, plain, cipher, key):
     timestamp = now.strftime("%Y%m%d")
     # open log file
     try:
-        srcpath , _ = os.path.split(os.path.abspath(cli_args['fname'][0]))
+        srcpath, _ = os.path.split(os.path.abspath(cli_args['fname'][0]))
         filename = 'cc-' + cli_args['vnum'][0] + '-' + timestamp + '.txt'
         log = open(srcpath+'/'+filename, 'w')
         # file for saving ciphertext only
@@ -133,7 +139,10 @@ def main():
     # and the encipher dictionary
     plaintext = plain_file.read()
     # let's do this
-    ciphertext = encipher(plaintext, abet)
+    bsize = args['blocksize']
+    rsize = args['rowsize']
+    pad = args['p']
+    ciphertext = encipher(plaintext, abet, pad, bsize, rsize)
     #log the puzzle
     logpuzzle(args, plaintext, ciphertext, str(abet))
 
